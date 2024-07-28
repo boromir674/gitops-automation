@@ -19,7 +19,7 @@ jobs:
       )
     uses: boromir674/automated-workflows/.github/workflows/go-pr-to-main.yml@dev-branch
     with:
-      RELEASE: 'release'
-      MAIN_BR: ${{ vars.GIT_MAIN_BRANCH || 'main' }}
+      main_branch: ${{ vars.GIT_MAIN_BRANCH || 'main' }}
+      release_branch: ${{ vars.GITOPS_RELEASE_BRANCH || 'release' }}
     secrets:
-      GH_TOKEN: '${{ secrets.PR_RW_AND_ACTIONS_RW }}'
+      PR_RW_AND_ACTIONS_RW: '${{ secrets.PR_RW_AND_ACTIONS_RW }}'
