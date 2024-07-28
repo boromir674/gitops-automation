@@ -15,5 +15,5 @@ jobs:
       # pass tag to PR from <user_branch>  -->  <github.ref>-<user_branch>
       release_branch: ${{ vars.GITOPS_RELEASE_BRANCH || 'release' }}
     secrets:
-      # since job does not do auto merge pat needs only read/write to PRs
+      # since job does auto merge pat needs read/write to PRs and to Actions
       github_pat: ${{ secrets.PR_RW_AND_ACTIONS_RW }}
