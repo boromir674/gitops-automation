@@ -1,10 +1,10 @@
-#########################################
-## PR to Main with Auto Merge - GitOps ##
-#########################################
+##########################
+## PR to Main  - GitOps ##
+##########################
 
-# integrate  with 'release-me' git ops event
+# integrate with 'release-me' git ops event
 
-# Triggers on 'gitops-release-me-user-branch-<user_branch>' PR merged into 'release'
+# Triggers on PR closed with merged code and when PR title starts with '[GITOPS]' string
 
 on:
   pull_request:
@@ -14,7 +14,9 @@ on:
 
 jobs:
   open_pr_to_main:
-    if: github.event.pull_request.merged == true && contains(fromJSON('["gitops-release-me-user-branch"]'), github.head_ref)
+    if: github.event.pull_request.merged == true && (
+      startsWith(github.event.pull_request.title, '[GITOPS]')
+      )
     uses: boromir674/automated-workflows/.github/workflows/go-pr-to-main.yml@test
     with:
       RELEASE: 'release'
