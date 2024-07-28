@@ -1,0 +1,23 @@
+#########################################
+## PR to Main with Auto Merge - GitOps ##
+#########################################
+
+# integrate  with 'release-me' git ops event
+
+# Triggers on 'gitops-release-me-user-branch-<user_branch>' PR merged into 'release'
+
+on:
+  pull_request:
+    types: [closed]
+    branches:  # ALLOWED Base Branches
+      - release
+
+jobs:
+  open_pr_to_main:
+    if: github.event.pull_request.merged == true && contains(fromJSON('["gitops-release-me-user-branch"]'), github.head_ref)
+    uses: boromir674/automated-workflows/.github/workflows/go-pr-to-main.yml@test
+    with:
+      RELEASE: 'release'
+      MAIN_BR: ${{ vars.GIT_MAIN_BRANCH || 'main' }}
+    secrets:
+      GH_TOKEN: '${{ secrets.PR_RW_AND_ACTIONS_RW }}'

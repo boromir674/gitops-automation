@@ -1,0 +1,24 @@
+############################################
+## PR to Release with Auto Merge - GitOps ##
+############################################
+
+# export tt='board-request'; git tag -d "$tt"; git push --delete origin "$tt"; git tag "$tt" && git push origin "$tt"
+
+on:
+  push:
+    tags:
+      - board-request   # Request to be included in next Release
+      - board-n-release  # Request to be included in next Release and create a Release
+
+      - release-me  # Request to be included in next Release and create a Release
+
+jobs:
+# must name head branch such as: gitops-user-branch-<user_branch> 
+  pr_to_release:
+    uses: boromir674/automated-workflows/.github/workflows/go-pr-to-release.yml@main
+    with:
+      # pass tag to PR from <user_branch>  -->  <github.ref>-<user_branch>
+      board_tag: "gitops-${{ github.ref_name }}-user-branch"
+      main_branch: ${{ vars.GITOPS_MAIN_BRANCH || 'main' }}
+    secrets:
+      github_pat: ${{ secrets.PR_RW_AND_ACTIONS_RW }}
