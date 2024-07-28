@@ -2,9 +2,9 @@
 ## PR to Main  - GitOps ##
 ##########################
 
-# integrate with 'release-me' git ops event
+# Part of 'release-me' Git Ops Process: User Br -> release -> main
 
-# Triggers on PR closed with merged code and when PR title starts with '[GITOPS]' string
+# Triggers on PR to release Closed with Code Merge and when PR title starts with '[GITOPS]'
 
 on:
   pull_request:
