@@ -17,5 +17,6 @@ jobs:
     with:
       main_branch: ${{ vars.GIT_MAIN_BRANCH || 'main' }}
       release_branch: ${{ vars.GIT_RELEASE_BRANCH || 'release' }}
+      commit_message: 'My Shiny Python Package'
     secrets:
       pat_token: ${{ secrets.PR_RW_AND_ACTIONS_RW }}
