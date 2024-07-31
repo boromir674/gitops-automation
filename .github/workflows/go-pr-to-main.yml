@@ -20,6 +20,6 @@ jobs:
     uses: boromir674/automated-workflows/.github/workflows/go-pr-to-main.yml@test
     with:
       main_branch: ${{ vars.GIT_MAIN_BRANCH || 'main' }}
-      release_branch: ${{ vars.GITOPS_RELEASE_BRANCH || 'release' }}
+      release_branch: ${{ vars.GIT_RELEASE_BRANCH || 'release' }}
     secrets:
       PR_RW_AND_ACTIONS_RW: '${{ secrets.PR_RW_AND_ACTIONS_RW }}'
