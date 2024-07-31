@@ -16,7 +16,6 @@ jobs:
   pr_to_release:
     uses: boromir674/automated-workflows/.github/workflows/go-pr-to-release.yml@test
     with:
-      # pass tag to PR from <user_branch>  -->  <github.ref>-<user_branch>
       release_branch: ${{ vars.GIT_RELEASE_BRANCH || 'release' }}
     secrets:
       # since job does auto merge pat needs read/write to PRs and to Actions
