@@ -1,0 +1,44 @@
+name: 'CI/CD 3-Phases Pipeline'
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ### CI: Build Phase ###
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Build Finished :)"
+
+  ### CI: Test Phase - Parallel Jobs###
+  test_1:
+  # Tests on the build artifacts
+  # Integration Tests
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Test 1 Finished :)"
+
+  test_2:
+  # Tests on the build artifacts
+  # Integration Tests
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Test 2 Finished :)"
+
+  ### CD: Deploy Phase ###
+  deploy:
+    needs: [test_1, test_2]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploy Finished :)"
+
+  ### Git Ops: Check PR Acceptance ###
+  qa_signal:
+    needs: [test_1, test_2]
+    uses: boromir674/automated-workflows/.github/workflows/go-single-status.yml@ffac270355ffe73cb8ab2bd2477ce6b20efca912  # v1.7.0
+    with:
+      needs_json: ${{ toJson(needs) }}
