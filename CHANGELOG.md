@@ -1,5 +1,18 @@
-## [Unreleased]
-### Added
-- user-branch-10743110469
+# Changelog
 
+All notable changes to this project will be documented in this file.
+
+This project adheres to [Semantic Versioning](https://semver.org/).
+
+## v1.0.0 (2024/09/06)
+
+### Changes
+
+#### feat
+- emulated commit for automated testing purposes
+
+
+## 0.1.0 (2024-09-24)
+
+First Ever no-release to kickstart the project.
 
